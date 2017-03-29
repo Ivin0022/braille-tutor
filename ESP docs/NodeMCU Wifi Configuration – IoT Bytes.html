@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/ -->
+<html class="js wf-lato-n4-active wf-lato-i4-active wf-lato-n7-active wf-lato-i7-active wf-lora-n4-active wf-active" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://iotbytes.wordpress.com/xmlrpc.php">
+
+<title>NodeMCU Wifi Configuration – IoT Bytes</title>
+<script defer="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/beacon.js.download"></script><script type="text/javascript" async="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/platform.js.download"></script><script src="./NodeMCU Wifi Configuration – IoT Bytes_files/webfont.js.download" type="text/javascript" async=""></script><script type="text/javascript">
+  WebFontConfig = {"google":{"families":["Lora:r:latin,latin-ext","Lato:r,i,b,bi:latin,latin-ext"]}};
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://s1.wp.com/wp-content/plugins/custom-fonts/js/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+	})();
+</script><style id="jetpack-custom-fonts-css">.wf-active body{font-family:"Lato",sans-serif}.wf-active .search-container .search-field{font-family:"Lato",sans-serif}.wf-active .blog-description{font-family:"Lato",sans-serif}.wf-active .post-content p.page-links{font-family:"Lato",sans-serif}.wf-active .post-content{font-family:"Lato",sans-serif}.wf-active .post-content h4, .wf-active .post-content h5, .wf-active .post-content h6{font-family:"Lato",sans-serif}.wf-active .post-content blockquote p{font-family:"Lato",sans-serif}.wf-active .post-content blockquote cite{font-family:"Lato",sans-serif}.wf-active .post-content .gallery-caption, .wf-active .post-content .wp-caption-text{font-family:"Lato",sans-serif}.wf-active .post-content fieldset legend{font-family:"Lato",sans-serif}.wf-active .post-content label{font-family:"Lato",sans-serif}.wf-active .post-content input, .wf-active .post-content textarea{font-family:"Lato",sans-serif}.wf-active .pingbacklist li:before{font-family:"Lato",sans-serif}.wf-active .comments-nav .fleft a:before{font-family:"Lato",sans-serif}.wf-active .comments-nav .fright a:after{font-family:"Lato",sans-serif}.wf-active .comment-respond input[type="text"], .wf-active .comment-respond textarea{font-family:"Lato",sans-serif}.wf-active .comment-respond input[type="submit"]{font-family:"Lato",sans-serif}.wf-active .wrapper .search-field{font-family:"Lato",sans-serif}.wf-active .comment-respond#respond{font-family:"Lato",sans-serif}.wf-active .blog-title{font-weight:400;font-style:normal}.wf-active .post-title{font-family:"Lora",serif;font-weight:400;font-style:normal}.wf-active .single-post .post-title{font-weight:400;font-style:normal}.wf-active .related-posts-title{font-weight:400;font-style:normal}.wf-active .post-content h1, .wf-active .post-content h2, .wf-active .post-content h3{font-family:"Lora",serif;font-weight:400;font-style:normal}.wf-active .post-content h1, .wf-active .post-content h2, .wf-active .post-content h3{font-family:"Lora",serif;font-weight:400;font-style:normal}.wf-active .post-content h1{font-style:normal;font-weight:400}.wf-active .post-content h2{font-style:normal;font-weight:400}.wf-active .post-content h3{font-style:normal;font-weight:400}.wf-active .comment-reply-title, .wf-active .comments-title{font-weight:400;font-style:normal}.wf-active .comment-reply-title .fa, .wf-active .comments-title .fa{font-style:normal;font-weight:400}.wf-active .widget-title{font-weight:400;font-style:normal}.wf-active .widget_rss li a{font-family:"Lora",serif;font-weight:400;font-style:normal}.wf-active .rowling-widget-list .title{font-family:"Lora",serif;font-weight:400;font-style:normal}.wf-active .post-content div#jp-relatedposts h3.jp-relatedposts-headline{font-family:"Lora",serif;font-style:normal;font-weight:400}</style>
+<meta name="google-site-verification" content="9U-oX_n0pj6Wrf5EoJZifHtHbuynVjthBC27ytXFfZw">
+<meta name="msvalidate.01" content="E4DC29E8E80927CDB767E87752F7A4A6">
+<meta name="p:domain_verify" content="cfbba49509d5b193c99a1d473ea7dafb">
+<meta name="yandex-verification" content="6727f47c4f64d026">
+<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="alternate" type="application/rss+xml" title="IoT Bytes » Feed" href="https://iotbytes.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="IoT Bytes » Comments Feed" href="https://iotbytes.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="IoT Bytes » NodeMCU Wifi Configuration Comments Feed" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1488818651h&ver=4.7.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./NodeMCU Wifi Configuration – IoT Bytes_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="all-css-0-1" href="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource" type="text/css" media="all">
+<link rel="stylesheet" id="fonts-css" href="./NodeMCU Wifi Configuration – IoT Bytes_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="all-css-2-1" href="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(1)" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-3-1" href="./NodeMCU Wifi Configuration – IoT Bytes_files/global-print.css" type="text/css" media="print">
+<link rel="stylesheet" id="all-css-4-1" href="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(2)" type="text/css" media="all">
+<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(3)"></script>
+<link rel="stylesheet" id="all-css-0-2" href="./NodeMCU Wifi Configuration – IoT Bytes_files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s1.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://iotbytes.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">
+<link rel="shortlink" href="http://wp.me/P7qgGK-54">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeMCU Wifi Configuration">
+<meta property="og:url" content="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">
+<meta property="og:description" content="Pradeep Singh | 1st April 2016 ESP8266 with NodeMCU Firmware can be configured as an Access Point, Wifi Client (Host / Station) or both as Client and AP at the same time. It has capability work wit…">
+<meta property="article:published_time" content="2016-04-01T10:07:15+00:00">
+<meta property="article:modified_time" content="2016-05-08T04:19:18+00:00">
+<meta property="og:site_name" content="IoT Bytes">
+<meta property="og:image" content="https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:image" content="https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg?w=240">
+<meta name="twitter:card" content="summary">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/c65ffe0f4a0d17cf7501d6033ecd052f?s=32" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/c65ffe0f4a0d17cf7501d6033ecd052f?s=32" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="https://secure.gravatar.com/blavatar/c65ffe0f4a0d17cf7501d6033ecd052f?s=114">
+<link rel="search" type="application/opensearchdescription+xml" href="https://iotbytes.wordpress.com/osd.xml" title="IoT Bytes">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="IoT Bytes"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Bits and Bytes of IoT"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://iotbytes.wordpress.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/c65ffe0f4a0d17cf7501d6033ecd052f?s=16"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="title" content="NodeMCU Wifi Configuration | IoT Bytes on WordPress.com">
+<meta name="description" content="Pradeep Singh | 1st April 2016 ESP8266 with NodeMCU Firmware can be configured as an Access Point, Wifi Client (Host / Station) or both as Client and AP at the same time. It has capability work with 802.11b, 802.11b and 802.11n networks. In this article we will check some of the WiFi configuration methods with sample code. WiFi Device Mode:…">
+<style type="text/css" id="syntaxhighlighteranchor"></style><link rel="stylesheet" href="./NodeMCU Wifi Configuration – IoT Bytes_files/css(1)" media="all">
+
+<style type="text/css"></style><script type="text/javascript" async="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(4)"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./NodeMCU Wifi Configuration – IoT Bytes_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./NodeMCU Wifi Configuration – IoT Bytes_files/services.css"><script type="text/javascript" async="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(5)"></script></head>
+
+	<body class="page-template-default page page-id-314 mp6 customizer-styles-applied has-site-logo highlander-enabled highlander-light" style="opacity: 1;">
+
+		<a class="skip-link screen-reader-text" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#main">Skip to content</a>
+
+		
+			<nav class="top-nav">
+
+				<div class="section-inner clear-fix">
+
+					<ul class="header-top-menu">
+
+						<li id="menu-item-4231" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4231"><a href="https://iotbytes.wordpress.com/">Home</a></li>
+<li id="menu-item-1683" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1683"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">Fundamentals</a>
+<ul class="sub-menu">
+	<li id="menu-item-1682" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1682"><a href="https://iotbytes.wordpress.com/what-is-iot/">What is IoT?</a></li>
+	<li id="menu-item-1810" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1810"><a href="https://iotbytes.wordpress.com/popular-hardware-platforms-for-iot/">Hardware Platforms for IoT</a></li>
+	<li id="menu-item-3021" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3021"><a href="https://iotbytes.wordpress.com/basic-sensors-for-iot/">Basic IoT Sensors</a></li>
+	<li id="menu-item-4293" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4293"><a href="https://iotbytes.wordpress.com/basic-iot-actuators/">Basic IoT Actuators</a></li>
+	<li id="menu-item-2194" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2194"><a href="https://iotbytes.wordpress.com/application-protocols-for-iot/">Application Protocols for IoT</a></li>
+	<li id="menu-item-2362" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2362"><a href="https://iotbytes.wordpress.com/network-access-protocols-for-iot/">Wireless Networking Technologies for IoT</a></li>
+	<li id="menu-item-2566" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2566"><a href="https://iotbytes.wordpress.com/open-source-tools-for-iot-software-applications/">Open Source Tools for IoT Software Applications</a></li>
+</ul>
+</li>
+<li id="menu-item-644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-644"><a title="ESP8266" href="https://iotbytes.wordpress.com/esp8266-2/">ESP8266</a>
+<ul class="sub-menu">
+	<li id="menu-item-93" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-93"><a href="https://iotbytes.wordpress.com/esp8266-2/">Introduction</a></li>
+	<li id="menu-item-578" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-578"><a href="https://iotbytes.wordpress.com/esp8266-pinouts/">Pinout</a></li>
+	<li id="menu-item-527" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-527"><a href="https://iotbytes.wordpress.com/esp8266/">Initial Setup</a></li>
+	<li id="menu-item-801" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-801"><a href="https://iotbytes.wordpress.com/esp8266-flashing-and-programming-cradle/">Flashing Cradle</a></li>
+	<li id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="https://iotbytes.wordpress.com/3-3v-power-supply-for-esp-8266/">3.3v Power Supply</a></li>
+</ul>
+</li>
+<li id="menu-item-645" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-645"><a title="NodeMCU" href="https://iotbytes.wordpress.com/nodemcu/">NodeMCU</a>
+<ul class="sub-menu">
+	<li id="menu-item-94" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-94"><a href="https://iotbytes.wordpress.com/nodemcu/">Introduction</a></li>
+	<li id="menu-item-634" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-634"><a href="https://iotbytes.wordpress.com/nodemcu-pinout/">Pinout</a></li>
+	<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"><a href="https://iotbytes.wordpress.com/first-time-setup-for-nodemcu/">Initial Setup</a></li>
+	<li id="menu-item-427" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-427"><a href="https://iotbytes.wordpress.com/managing-files-with-nodemcu/">File Management</a></li>
+	<li id="menu-item-315" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-314 current_page_item menu-item-315"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">WiFi Configuration</a></li>
+	<li id="menu-item-1076" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1076"><a href="https://iotbytes.wordpress.com/checking-wifi-status-before-performing-any-task-on-esp8266/">Check WiFi Connection Status</a></li>
+	<li id="menu-item-220" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-220"><a href="https://iotbytes.wordpress.com/mqtt-with-nodemcu/">MQTT</a></li>
+</ul>
+</li>
+<li id="menu-item-646" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-646"><a title="RaspberryPi" href="https://iotbytes.wordpress.com/raspberrypi/">Raspberry Pi</a>
+<ul class="sub-menu">
+	<li id="menu-item-106" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a href="https://iotbytes.wordpress.com/raspberrypi/">Introduction</a></li>
+	<li id="menu-item-1152" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1152"><a href="https://iotbytes.wordpress.com/raspberry-pi-pinout/">Pinout</a></li>
+	<li id="menu-item-5088" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5088"><a href="https://iotbytes.wordpress.com/raspberry-pi-ip-network-configuration/">Raspberry Pi IP Network Configuration</a></li>
+	<li id="menu-item-1344" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1344"><a href="https://iotbytes.wordpress.com/mosquitto-mqtt-broker-on-raspberry-pi/">MQTT Broker on Raspberry Pi</a></li>
+	<li id="menu-item-3793" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3793"><a href="https://iotbytes.wordpress.com/sqlite-db-on-raspberry-pi/">SQLite DB on Raspberry Pi</a></li>
+	<li id="menu-item-3629" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3629"><a href="https://iotbytes.wordpress.com/python-flask-web-application-on-raspberry-pi-with-nginx-and-uwsgi/">Python Flask Web Application on Raspberry Pi with NGINX and uWSGI</a></li>
+	<li id="menu-item-4380" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4380"><a href="https://iotbytes.wordpress.com/programmatically-send-e-mail-from-raspberry-pi-using-python-and-gmail/">Send Email from Raspberry Pi using Python Script and Gmail SMTP</a></li>
+	<li id="menu-item-4593" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4593"><a href="https://iotbytes.wordpress.com/programmatically-tweet-from-raspberry-pi-using-python-script/">Post a Tweet on Twitter from Raspberry Pi using Python Script</a></li>
+	<li id="menu-item-1600" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1600"><a href="https://iotbytes.wordpress.com/monitor-ups-power-events-on-mqtt-client/">APCUPSD on Raspberry Pi</a></li>
+</ul>
+</li>
+<li id="menu-item-122" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-122"><a href="https://iotbytes.wordpress.com/mqtt/">MQTT</a>
+<ul class="sub-menu">
+	<li id="menu-item-123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-123"><a href="https://iotbytes.wordpress.com/mqtt/">Introduction</a></li>
+	<li id="menu-item-927" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-927"><a href="https://iotbytes.wordpress.com/capturing-and-analysing-mqtt-packets/">Capturing and Analysing MQTT Packets</a></li>
+	<li id="menu-item-159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-159"><a href="https://iotbytes.wordpress.com/paho-mqtt-with-python/">Paho MQTT with Python</a></li>
+	<li id="menu-item-1345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1345"><a href="https://iotbytes.wordpress.com/mosquitto-mqtt-broker-on-raspberry-pi/">MQTT Broker on Raspberry Pi</a></li>
+	<li id="menu-item-3993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3993"><a href="https://iotbytes.wordpress.com/mqtt-over-websockets/">MQTT over WebSockets</a></li>
+	<li id="menu-item-4225" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4225"><a href="https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/">Storing MQTT Data from Sensors into SQL Database</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219"><a href="https://iotbytes.wordpress.com/mqtt-with-nodemcu/">MQTT with NodeMCU</a></li>
+	<li id="menu-item-1601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1601"><a href="https://iotbytes.wordpress.com/monitor-ups-power-events-on-mqtt-client/">Publish APC UPS Power Events on MQTT</a></li>
+	<li id="menu-item-736" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-736"><a href="https://iotbytes.wordpress.com/physical-shutdown-button-for-wd-my-cloud/">MQTT Based Shutdown Button for WD My Cloud</a></li>
+</ul>
+</li>
+<li id="menu-item-4801" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4801"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">AWS IoT</a>
+<ul class="sub-menu">
+	<li id="menu-item-5181" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5181"><a href="https://iotbytes.wordpress.com/starting-with-aws-iot/">Getting Started with AWS IoT</a></li>
+	<li id="menu-item-4800" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4800"><a href="https://iotbytes.wordpress.com/aws-iot-cli-on-raspberry-pi/">AWS IoT CLI on Raspberry Pi</a></li>
+	<li id="menu-item-5083" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5083"><a href="https://iotbytes.wordpress.com/mqtt-with-aws-iot-using-python-and-paho/">MQTT with AWS IoT Platform using Python and Paho</a></li>
+	<li id="menu-item-5418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5418"><a href="https://iotbytes.wordpress.com/aws-iot-policy-basics/">Basics of AWS IoT Policies</a></li>
+</ul>
+</li>
+
+					</ul> <!-- /header-top-menu -->
+
+					<ul class="social-menu">
+
+						<li id="menu-item-151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-151"><a class="search-toggle" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#"><span class="screen-reader-text">Search</span></a></li>
+					</ul> <!-- /social-menu -->
+
+				</div> <!-- /section-inner -->
+
+			</nav> <!-- /top-nav -->
+
+		
+		<div class="search-container">
+
+			<div class="section-inner">
+
+				
+<form method="get" class="search-form" action="https://iotbytes.wordpress.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search" value="" name="s" title="Search for:">
+	</label>
+	<button type="submit" class="search-button"><span class="fa fw fa-search"></span><span class="screen-reader-text">Search</span></button>
+</form>
+
+			</div> <!-- /section-inner -->
+
+		</div> <!-- /search-container -->
+
+		<header class="header-wrapper">
+
+			<div class="header">
+
+				<div class="section-inner">
+
+					
+						<a href="https://iotbytes.wordpress.com/" class="site-logo-link" rel="home"><img width="69" height="80" src="./NodeMCU Wifi Configuration – IoT Bytes_files/iotbytes.png" class="site-logo attachment-rowling_site_logo" alt="" data-size="rowling_site_logo" srcset="https://iotbytes.files.wordpress.com/2016/04/iotbytes.png?w=69 69w, https://iotbytes.files.wordpress.com/2016/04/iotbytes.png?w=138 138w, https://iotbytes.files.wordpress.com/2016/04/iotbytes.png?w=130 130w" sizes="(max-width: 69px) 100vw, 69px" data-attachment-id="3" data-permalink="https://iotbytes.wordpress.com/iotbytes/" data-orig-file="https://iotbytes.files.wordpress.com/2016/04/iotbytes.png" data-orig-size="600,691" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="iotbytes" data-image-description="" data-medium-file="https://iotbytes.files.wordpress.com/2016/04/iotbytes.png?w=260" data-large-file="https://iotbytes.files.wordpress.com/2016/04/iotbytes.png?w=600"></a>
+						<h2 class="site-title">
+							<a href="https://iotbytes.wordpress.com/" title="IoT Bytes — Bits and Bytes of IoT" rel="home">IoT Bytes</a>
+						</h2>
+
+													<h4 class="site-description">Bits and Bytes of IoT</h4>
+						
+					
+					
+				</div> <!-- /section-inner -->
+
+			</div> <!-- /header -->
+
+			
+		</header> <!-- /header-wrapper -->
+
+<div class="wrapper section-inner">
+
+	<main id="main" class="content">
+
+		
+			
+			
+			<article id="page-314" class="post single single-post post-314 page type-page status-publish hentry">
+
+				<header class="post-header">
+
+					<h1 class="post-title">NodeMCU Wifi Configuration</h1>
+				</header> <!-- /post-header -->
+
+				
+				<div class="post-inner clear-fix">
+
+					<div class="post-content">
+
+						<p><em><span style="color:#999999;">Pradeep Singh | 1st April 2016</span></em></p>
+<p><img data-attachment-id="374" data-permalink="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/wifi/" data-orig-file="https://iotbytes.files.wordpress.com/2016/04/wifi2.jpg" data-orig-size="626,423" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="wifi" data-image-description="" data-medium-file="https://iotbytes.files.wordpress.com/2016/04/wifi2.jpg?w=300" data-large-file="https://iotbytes.files.wordpress.com/2016/04/wifi2.jpg?w=616" class="  wp-image-374 aligncenter" src="./NodeMCU Wifi Configuration – IoT Bytes_files/wifi2.jpg" alt="wifi" width="229" height="155" srcset="https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg?w=229&amp;h=155 229w, https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg?w=458&amp;h=310 458w, https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg?w=150&amp;h=101 150w, https://pradeepsinghblog.files.wordpress.com/2016/04/wifi2.jpg?w=300&amp;h=203 300w" sizes="(max-width: 229px) 100vw, 229px"></p>
+<p>ESP8266 with&nbsp;NodeMCU Firmware&nbsp;can be configured as an Access Point, Wifi Client&nbsp;(Host / Station) or both as Client and AP at the same time. It has&nbsp;capability work with 802.11b, 802.11b and 802.11n networks. In this article we will check some of the WiFi configuration methods&nbsp;with sample code.</p>
+<h3>WiFi Device Mode:</h3>
+<p>We can configure the role (Client, AP or Both)of ESP8266 Wifi chip from any of following options&nbsp;–</p>
+<ol>
+<li>wifi.STATION</li>
+<li>wifi.SOFTAP</li>
+<li>wifi.STATIONAP</li>
+</ol>
+<p>We can configure NodeMCU for role using “wifi.setmode()”. Following is an example to configure the module as WiFi Endpoint&nbsp;–</p>
+<pre>wifi.setmode(wifi.STATION)</pre>
+<h3>WiFi Signal Standard:</h3>
+<p>The WiFi networking standard (802.11b, g or n) can be configured from any of the following options –</p>
+<ol>
+<li>wifi.PHYMODE_B</li>
+<li>wifi.PHYMODE_G</li>
+<li>wifi.PHYMODE_N</li>
+</ol>
+<p>We can configure NodeMCU to work with any of these WiFi Standards using “wifi.setphymode()”. Following is an example to configure module with 802.11n –</p>
+<pre>wifi.setphymode(wifi.PHYMODE_N)</pre>
+<h3>Config Validation:</h3>
+<p>You can check WiFi Module related configuration using following methods&nbsp;–</p>
+<pre>print(wifi.getmode())
+print(wifi.getphymode())
+print(wifi.getchannel())</pre>
+<p>You can check WiFi Station related configuration using following methods –</p>
+<pre>print(<span class="skimlinks-unlinked">wifi.sta.getmac</span>())
+print(<span class="skimlinks-unlinked">wifi.sta.getip</span>())</pre>
+<p>You can check WiFi SoftAP related configuration using following methods –</p>
+<pre>print(<span class="skimlinks-unlinked">wifi.ap.getmac</span>())
+print(<span class="skimlinks-unlinked">wifi.ap.getip</span>())
+print(<span class="skimlinks-unlinked">wifi.ap.getbroadcast</span>())</pre>
+<pre><code class="lua hljs"><span class="hljs-keyword">--- This block will print list of all the Clients connected to AP ---
+for</span> mac,ip <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(wifi.ap.getclient()) <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(mac,ip)
+<span class="hljs-keyword">end</span></code></pre>
+<p>&nbsp;</p>
+<h3>Sample Code to List All Available Access Points:</h3>
+<hr>
+<p>Following is an example to list all available&nbsp;WiFi Networks (<a href="https://github.com/pradeesi/NodeMCU-WiFi/blob/master/list_ap.lua" target="_blank">GitHub Link for Code File</a>)-</p>
+<pre>-----------------------------------------------
+--- Set Variables ---
+-----------------------------------------------
+--- AP Search Params ---
+ap_list_cfg={}
+--- Enter SSID, use nil to list all SSIDs ---
+<span class="skimlinks-unlinked">ap_list_cfg.ssid=nil</span>
+--- Enter BSSID, use nil to list all SSIDs ---
+<span class="skimlinks-unlinked">ap_list_cfg.bssid=nil</span>
+--- Enter Channel ID, use 0 to list all channels ---
+ap_list_cfg.channel=0
+--- Use 0 to skip hidden networks, use 1 to list them ---
+ap_list_cfg.show_hidden=1
+
+--- AP Table Format ---
+--- 1 for Output table format - (BSSID : SSID, RSSI, AUTHMODE, CHANNEL)
+--- 0 for Output table format - (SSID : AUTHMODE, RSSI, BSSID, CHANNEL)
+ap_list_table_format = 1
+
+-----------------------------------------------
+
+--- Print Output ---
+function print_AP_List(ap_table)
+ for p,q in pairs(ap_table) do
+ print(p.." : "..q)
+ end
+end
+
+--- Call Get AP Method ---
+<span class="skimlinks-unlinked">wifi.sta.getap(ap_list_cfg,ap_list_table_format</span>, print_AP_List)
+-----------------------------------------------</pre>
+<p>&nbsp;</p>
+<h3>Sample Code to Configure NodeMCU as WiFi Client:</h3>
+<hr>
+<p>Following is an example to connect NodeMCU to existing WiFi Network (<a href="https://github.com/pradeesi/NodeMCU-WiFi/blob/master/nodemcu_as_client.lua" target="_blank">GitHub Link for Code File</a>)-</p>
+<pre>-----------------------------------------------
+--- Set Variables ---
+-----------------------------------------------
+--- WIFI CONFIGURATION ---
+WIFI_SSID = "yourSSID"
+WIFI_PASSWORD = "yourPassword"
+WIFI_SIGNAL_MODE = wifi.PHYMODE_N
+
+--- IP CONFIG (Leave blank to use DHCP) ---
+ESP8266_IP=""
+ESP8266_NETMASK=""
+ESP8266_GATEWAY=""
+-----------------------------------------------
+
+--- Connect to the wifi network ---
+wifi.setmode(wifi.STATION) 
+wifi.setphymode(WIFI_SIGNAL_MODE)
+<span class="skimlinks-unlinked">wifi.sta.config(WIFI_SSID</span>, WIFI_PASSWORD) 
+<span class="skimlinks-unlinked">wifi.sta.connect</span>()
+
+if ESP8266_IP ~= "" then
+ <span class="skimlinks-unlinked">wifi.sta.setip({ip=ESP8266_IP,netmask=ESP8266_NETMASK,gateway=ESP8266_GATEWAY</span>})
+end
+-----------------------------------------------
+
+--- Check the IP Address ---
+print(<span class="skimlinks-unlinked">wifi.sta.getip</span>())</pre>
+<h3></h3>
+<h3>Sample Code to Configure NodeMCU as WiFi Access Point:</h3>
+<hr>
+<p>Following is an example&nbsp;to to use NodeMCU as an AP (<a href="https://github.com/pradeesi/NodeMCU-WiFi/blob/master/nodemcu_as_ap.lua" target="_blank">GitHub Link for Code File</a>)-</p>
+<pre>---------------------------------------
+--- Set Variables ---
+---------------------------------------
+--- Set AP Configuration Variables ---
+AP_CFG={}
+--- SSID: 1-32 chars
+<span class="skimlinks-unlinked">AP_CFG.ssid="pradeep</span> Password: 8-64 chars. Minimum 8 Chars
+<span class="skimlinks-unlinked">AP_CFG.pwd="wifipassword</span> Authentication: AUTH_OPEN, AUTH_WPA_PSK, AUTH_WPA2_PSK, AUTH_WPA_WPA2_PSK
+<span class="skimlinks-unlinked">AP_CFG.auth=AUTH_OPEN</span>
+--- Channel: Range 1-14
+AP_CFG.channel = 6
+--- Hidden Network? True: 1, False: 0
+AP_CFG.hidden = 0
+--- Max Connections: Range 1-4
+<span class="skimlinks-unlinked">AP_CFG.max=4</span>
+--- WiFi Beacon: Range 100-60000
+AP_CFG.beacon=100
+
+--- Set AP IP Configuration Variables ---
+AP_IP_CFG={}
+<span class="skimlinks-unlinked">AP_IP_CFG.ip="192.168.10.1</span>IP_CFG.netmask="255.255.255.0"
+AP_IP_CFG.gateway="192.168.10.1"
+
+--- Set AP DHCP Configuration Variables ---
+--- There is no support for defining last DHCP IP ---
+AP_DHCP_CFG ={}
+<span class="skimlinks-unlinked">AP_DHCP_CFG.start</span> = "192.168.10.2"
+---------------------------------------
+
+--- Configure ESP8266 into AP Mode ---
+wifi.setmode(wifi.SOFTAP)
+--- Configure 802.11n Standard ---
+wifi.setphymode(wifi.PHYMODE_N)
+
+--- Configure WiFi Network Settings ---
+<span class="skimlinks-unlinked">wifi.ap.config(AP_CFG</span>)
+--- Configure AP IP Address ---
+<span class="skimlinks-unlinked">wifi.ap.setip(AP_IP_CFG</span>)
+
+--- Configure DHCP Service ---
+<span class="skimlinks-unlinked">wifi.ap.dhcp.config(AP_DHCP_CFG</span>)
+--- Start DHCP Service ---
+<span class="skimlinks-unlinked">wifi.ap.dhcp.start</span>()
+---------------------------------------</pre>
+<h3></h3>
+<h3>Sample Code to Configure NodeMCU in Hybrid Mode (AP + Client):</h3>
+<hr>
+<p>Following is an example&nbsp;to to use NodeMCU in Hybrid Mode&nbsp; (<a href="https://github.com/pradeesi/NodeMCU-WiFi/blob/master/nodemcu_as_ap_n_client.lua" target="_blank">GitHub Link for Code File</a>)-</p>
+<pre>-----------------------------------------------
+--- Set Variables ---
+-----------------------------------------------
+--- Set Client Configuration Variables ---
+
+WIFI_SSID = "yourssid"
+WIFI_PASSWORD = "yourpassword"
+
+--- IP CONFIG (Leave blank to use DHCP) ---
+ESP8266_IP=""
+ESP8266_NETMASK=""
+ESP8266_GATEWAY=""
+-----------------------------------------------
+--- Set AP Configuration Variables ---
+
+AP_CFG={}
+--- SSID: 1-32 chars
+<span class="skimlinks-unlinked">AP_CFG.ssid="pradeep</span> Password: 8-64 chars. Minimum 8 Chars
+<span class="skimlinks-unlinked">AP_CFG.pwd="wifipassword</span> Authentication: AUTH_OPEN, AUTH_WPA_PSK, AUTH_WPA2_PSK, AUTH_WPA_WPA2_PSK
+<span class="skimlinks-unlinked">AP_CFG.auth=AUTH_OPEN</span>
+--- Channel: 1-14
+AP_CFG.channel = 6
+--- Hidden Network? True: 1, False: 0
+AP_CFG.hidden = 0
+--- Max Connections 1-4
+<span class="skimlinks-unlinked">AP_CFG.max=4</span>
+--- WiFi Beacon 100-60000
+AP_CFG.beacon=100
+
+--- Set AP IP Configuration Variables ---
+AP_IP_CFG={}
+<span class="skimlinks-unlinked">AP_IP_CFG.ip="192.168.10.1</span>IP_CFG.netmask="255.255.255.0"
+AP_IP_CFG.gateway="192.168.10.1"
+
+--- Set AP DHCP Configuration Variables ---
+--- There is no support for defining last DHCP IP
+AP_DHCP_CFG ={}
+<span class="skimlinks-unlinked">AP_DHCP_CFG.start</span> = "192.168.10.2"
+---------------------------------------
+
+--- Configure ESP8266 into Hybrid Mode (AP and Client Mode) ---
+wifi.setmode(wifi.STATIONAP)
+--- Configure 802.11n Standard ---
+wifi.setphymode(wifi.PHYMODE_N)
+
+-----------------------------------------------
+--- WiFi Client Setup ---
+
+--- Configure Client with Router SSID and Password ---
+<span class="skimlinks-unlinked">wifi.sta.config(WIFI_SSID</span>, WIFI_PASSWORD) 
+<span class="skimlinks-unlinked">wifi.sta.connect</span>()
+
+--- Configure Static IP (If Available) ---
+if ESP8266_IP ~= "" then
+ <span class="skimlinks-unlinked">wifi.sta.setip({ip=ESP8266_IP,netmask=ESP8266_NETMASK,gateway=ESP8266_GATEWAY</span>})
+end
+
+-----------------------------------------------
+--- WiFi Access Point Setup ---
+
+--- Configure WiFi Network Settings ---
+<span class="skimlinks-unlinked">wifi.ap.config(AP_CFG</span>)
+--- Configure AP IP Address ---
+<span class="skimlinks-unlinked">wifi.ap.setip(AP_IP_CFG</span>)
+
+--- Configure DHCP Service ---
+<span class="skimlinks-unlinked">wifi.ap.dhcp.config(AP_DHCP_CFG</span>)
+--- Start DHCP Service ---
+<span class="skimlinks-unlinked">wifi.ap.dhcp.start</span>()
+---------------------------------------</pre>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-314" class="share-twitter sd-button share-icon" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-314" class="share-facebook sd-button share-icon" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?share=facebook&amp;nb=1" target="_blank" title="Share on Facebook"><span>Facebook<span class="share-count">4</span></span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-314" class="share-google-plus-1 sd-button share-icon" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?share=google-plus-1&amp;nb=1" target="_blank" title="Click to share on Google+"><span>Google</span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-109695034-314-58db99418c42a" data-src="//widgets.wp.com/likes/#blog_id=109695034&amp;post_id=314&amp;origin=iotbytes.wordpress.com&amp;obj_id=109695034-314-58db99418c42a" data-name="like-post-frame-109695034-314-58db99418c42a"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-109695034-314-58db99418c42a" height="55px" width="100%" frameborder="0" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource.html"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div></div>
+						
+					</div> <!-- /post-content -->
+
+				</div> <!-- /post-inner -->
+
+				
+<div id="comments" class="comments-area clear-fix">
+
+	
+	<div class="comments-container">
+
+		<div class="comments-inner">
+
+			<a name="comments"></a>
+
+			<div class="comments-title-container clear-fix">
+
+				<h3 class="comments-title">
+					13 thoughts on “<span>NodeMCU Wifi Configuration</span>”				</h3>
+
+				<p class="comments-title-link">
+
+					<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#respond">Add Comment</a>
+
+				</p>
+
+			</div><!-- /comments-title-link -->
+
+			<div class="comments">
+
+				<ol class="comment-list">
+							<li id="comment-8" class="comment even thread-even depth-1 parent highlander-comment">
+			<article id="div-comment-8" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/bcadc2b3f630fa74b093f31fcbfa798f" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-bcadc2b3f630fa74b093f31fcbfa798f-0">						<b class="fn">Sandip</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-8">
+							<time datetime="2016-07-04T07:40:19+00:00">
+								July 4, 2016 at 7:40 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Pradeep – I need one help. </p>
+<p>I am trying to configure NodeMCU using the firmware (similar to C language). I have been successful in a basic project of triggering LEDs using browser. In my current code i have hard coded the SSID and Pwd. </p>
+<p>I would like to know how could i setup, so that i donot have to hardcode the wifi SSID and Pwd.  It could give me a prompt first time to set the SSID and pwd. This would help me to use the device in my friends home as well.</p>
+<p>Request your feedback.</p>
+<p id="comment-like-8" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=8&amp;_wpnonce=ee679014ab" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-8" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=8#respond" onclick="return addComment.moveForm( &quot;div-comment-8&quot;, &quot;8&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Sandip">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-9" class="comment byuser comment-author-pradeepsi bypostauthor odd alt depth-2 highlander-comment">
+			<article id="div-comment-9" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-df6d258d9c3bf01e078956ad442a2bee-0">						<b class="fn"><a href="http://www.iotbytes.com/" rel="external nofollow" class="url">Pradeep Singh</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-9">
+							<time datetime="2016-07-06T13:10:59+00:00">
+								July 6, 2016 at 1:10 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>You may consider connecting a push button with one of the NodeMCU’s GPIO Pins and write code to delete wifi config from your device when this button is pressed. After deleting the WiFi config, your code should configure NodeMCU with an open WiFi SSID and put it in AP Mode. This setup will act as “reset” button found on most WiFi routers. You may also need to write additional code to generate a simple HTML page that can accept new WiFi Config and change NodeMCU’s mode to AP or Client.</p>
+<p>If this seems too much, try exploring ESPWebFramework at <a href="https://github.com/fdivitto/ESPWebFramework" rel="nofollow">https://github.com/fdivitto/ESPWebFramework</a></p>
+<p id="comment-like-9" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=9&amp;_wpnonce=51f5d8eda9" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-9" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=9#respond" onclick="return addComment.moveForm( &quot;div-comment-9&quot;, &quot;9&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Pradeep Singh">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-11" class="comment byuser comment-author-abbottmd even thread-odd thread-alt depth-1 parent highlander-comment">
+			<article id="div-comment-11" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/9ce4b7db61ee68d0c67ce76b0c18ac54" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-9ce4b7db61ee68d0c67ce76b0c18ac54-0">						<b class="fn"><a href="http://abbottmd.googlepages.com/" rel="external nofollow" class="url">abbottmd</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-11">
+							<time datetime="2016-07-28T02:36:24+00:00">
+								July 28, 2016 at 2:36 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Pradeep- fantastic summary and it worked great. Tonight was my first attempt at using my new NodeMCU board and your script worked. Thank you</p>
+<p id="comment-like-11" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=11&amp;_wpnonce=408aaf76f0" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-11" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=11#respond" onclick="return addComment.moveForm( &quot;div-comment-11&quot;, &quot;11&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to abbottmd">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-12" class="comment byuser comment-author-pradeepsi bypostauthor odd alt depth-2 highlander-comment">
+			<article id="div-comment-12" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-df6d258d9c3bf01e078956ad442a2bee-1">						<b class="fn"><a href="http://www.iotbytes.com/" rel="external nofollow" class="url">Pradeep Singh</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-12">
+							<time datetime="2016-07-28T06:48:19+00:00">
+								July 28, 2016 at 6:48 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Thanks, I am glad it worked for you <img draggable="false" class="emoji" alt="🙂" src="./NodeMCU Wifi Configuration – IoT Bytes_files/1f642.svg"></p>
+<p id="comment-like-12" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=12&amp;_wpnonce=dca9c4a222" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-12" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=12#respond" onclick="return addComment.moveForm( &quot;div-comment-12&quot;, &quot;12&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Pradeep Singh">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-13" class="comment even thread-even depth-1 parent highlander-comment">
+			<article id="div-comment-13" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/fc387060ea20464eb7586954cbe9c5c7" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-fc387060ea20464eb7586954cbe9c5c7-0">						<b class="fn">Ismail</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-13">
+							<time datetime="2016-07-28T10:48:59+00:00">
+								July 28, 2016 at 10:48 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>hello i made esp8266 to SoftAp mode and connected my mobile phone to the WiFi network .<br>
+what i want to do is sending data from phone(Browser) to ESP &amp; vise-versa. what to for this..<br>
+I want to make a device which will send the data to Phone an phone will display it. also using that we can change same parameter to ESP using Browser on phone</p>
+<p>ThankYou</p>
+<p id="comment-like-13" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=13&amp;_wpnonce=d1d464ed26" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-13" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=13#respond" onclick="return addComment.moveForm( &quot;div-comment-13&quot;, &quot;13&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Ismail">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-16" class="comment byuser comment-author-pradeepsi bypostauthor odd alt depth-2 highlander-comment">
+			<article id="div-comment-16" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-df6d258d9c3bf01e078956ad442a2bee-2">						<b class="fn"><a href="http://www.iotbytes.com/" rel="external nofollow" class="url">Pradeep Singh</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-16">
+							<time datetime="2016-08-07T15:25:25+00:00">
+								August 7, 2016 at 3:25 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi Ismail,</p>
+<p>You can create a simple Web Server on ESP8266 which can listen to GET requests from HTTP clients (Web Browsers) and respond with some value, For Ex some sensor data in HTML Body. </p>
+<p>Same Web Server can be extended to listen to POST requests from HTTP clients (Web Browsers). You can post data in Json or XML format and based on that make changes on ESP8266.</p>
+<p>You can easily find many examples for your use case on google, simple search with topic “nodemcu web server example”. Let me know in case you need additional details on this.</p>
+<p id="comment-like-16" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=16&amp;_wpnonce=6857ad874d" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-16" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=16#respond" onclick="return addComment.moveForm( &quot;div-comment-16&quot;, &quot;16&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Pradeep Singh">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-20" class="comment even thread-odd thread-alt depth-1 highlander-comment">
+			<article id="div-comment-20" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/45a4ba9cbb6931c111d5892f79e477a1" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-45a4ba9cbb6931c111d5892f79e477a1-0">						<b class="fn">Vesku</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-20">
+							<time datetime="2016-09-15T07:57:05+00:00">
+								September 15, 2016 at 7:57 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Thanks for very nice article!</p>
+<p>I would like to detect new wifi client in AP and start/redirect browser in client device (mobile phone) into to APs page.  It would make easier to use 8266 as web server.</p>
+<p>The respinse string  for redirecting is like<br>
+startup = “GET /read HTTP/1.0”<br>
+startup += “Host: ” + WiFi.localIP()<br>
+startup += “User-Agent: CaptiveNetworkSupport/1.0 wispr”<br>
+startup += “Connection: close”</p>
+<p id="comment-like-20" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=20&amp;_wpnonce=17144e91a7" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-20" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=20#respond" onclick="return addComment.moveForm( &quot;div-comment-20&quot;, &quot;20&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Vesku">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-46" class="comment odd alt thread-even depth-1 parent highlander-comment">
+			<article id="div-comment-46" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/126623e232a03312c21a12e30dadc892" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-126623e232a03312c21a12e30dadc892-0">						<b class="fn">Sumanth</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-46">
+							<time datetime="2016-12-24T07:26:31+00:00">
+								December 24, 2016 at 7:26 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi!<br>
+I’m a beginner to nodeMCU, I just wanted to ask which IDE is being used to run the scripts mentioned here?</p>
+<p>Can we do it using the Arduino IDE? I’m quite comfortable with arduino programming</p>
+<p id="comment-like-46" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=46&amp;_wpnonce=94490afc91" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-46" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=46#respond" onclick="return addComment.moveForm( &quot;div-comment-46&quot;, &quot;46&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Sumanth">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-60" class="comment byuser comment-author-pradeepsi bypostauthor even depth-2 highlander-comment">
+			<article id="div-comment-60" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-df6d258d9c3bf01e078956ad442a2bee-3">						<b class="fn"><a href="http://www.iotbytes.com/" rel="external nofollow" class="url">Pradeep Singh</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-60">
+							<time datetime="2017-01-20T15:13:49+00:00">
+								January 20, 2017 at 3:13 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>I used ESPlorer IDE. You can download it from – </p>
+<p><a href="https://esp8266.ru/esplorer/" rel="nofollow">https://esp8266.ru/esplorer/</a></p>
+<p>I didn’t use Arduino IDE, but I am sure you can use Arduino IDE too for NodeMCU programming. However, these scripts may need to be changed accordingly.</p>
+<p id="comment-like-60" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=60&amp;_wpnonce=b73a881d67" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-60" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=60#respond" onclick="return addComment.moveForm( &quot;div-comment-60&quot;, &quot;60&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Pradeep Singh">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-55" class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment">
+			<article id="div-comment-55" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/d4e6df36fbbdd0b45039c1321483c950" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-d4e6df36fbbdd0b45039c1321483c950-0">						<b class="fn">Orlan2</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-55">
+							<time datetime="2017-01-13T19:52:54+00:00">
+								January 13, 2017 at 7:52 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Excellent summary<br>
+Thanks for all</p>
+<p id="comment-like-55" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=55&amp;_wpnonce=772ee4a191" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-55" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=55#respond" onclick="return addComment.moveForm( &quot;div-comment-55&quot;, &quot;55&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Orlan2">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-56" class="comment byuser comment-author-pradeepsi bypostauthor even depth-2 highlander-comment">
+			<article id="div-comment-56" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-df6d258d9c3bf01e078956ad442a2bee-4">						<b class="fn"><a href="http://www.iotbytes.com/" rel="external nofollow" class="url">Pradeep Singh</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-56">
+							<time datetime="2017-01-15T11:26:02+00:00">
+								January 15, 2017 at 11:26 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Thank you <img draggable="false" class="emoji" alt="🙂" src="./NodeMCU Wifi Configuration – IoT Bytes_files/1f642.svg"></p>
+<p id="comment-like-56" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=56&amp;_wpnonce=920886f1e9" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-56" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=56#respond" onclick="return addComment.moveForm( &quot;div-comment-56&quot;, &quot;56&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Pradeep Singh">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-70" class="comment odd alt thread-even depth-1 highlander-comment">
+			<article id="div-comment-70" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/picture" class="avatar avatar-32" height="32" width="32">						<b class="fn"><a href="https://www.facebook.com/app_scoped_user_id/100000024006885/" rel="external nofollow" class="url">Aman Yadav</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-70">
+							<time datetime="2017-02-02T14:38:44+00:00">
+								February 2, 2017 at 2:38 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hello Pradeep,<br>
+i am Aman Yadav electronics and iot enthusiast.I have some project to discuss. Can we have conversation over email?<br>
+<a href="mailto:amanyadav2480@gmail.com">amanyadav2480@gmail.com</a></p>
+<p id="comment-like-70" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=70&amp;_wpnonce=f76fc63485" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-70" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=70#respond" onclick="return addComment.moveForm( &quot;div-comment-70&quot;, &quot;70&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to Aman Yadav">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-81" class="comment even thread-odd thread-alt depth-1 highlander-comment">
+			<article id="div-comment-81" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/67fb9604793da9b6ce074fcec2fec78a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-67fb9604793da9b6ce074fcec2fec78a-0">						<b class="fn">nay</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-81">
+							<time datetime="2017-02-13T06:08:32+00:00">
+								February 13, 2017 at 6:08 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>how can i change the 80 port for 88 port here: srv:listen(80,function(conn) ?<br>
+thanks</p>
+<p id="comment-like-81" data-liked="comment-not-liked" class="comment-likes comment-not-liked"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?like_comment=81&amp;_wpnonce=26eff59b9b" class="comment-like-link needs-login" rel="nofollow" data-blog="109695034"><span>Like</span></a><span id="comment-like-count-81" class="comment-like-feedback">Like</span></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/?replytocom=81#respond" onclick="return addComment.moveForm( &quot;div-comment-81&quot;, &quot;81&quot;, &quot;respond&quot;, &quot;314&quot; )" aria-label="Reply to nay">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+				</ol><!-- .comment-list -->
+
+				
+			</div> <!-- /comments -->
+
+		</div> <!-- /comments-inner -->
+
+	</div> <!-- /comments-container -->
+
+		<div id="respond" class="comment-respond js">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://iotbytes.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6c4ca89975"><input type="hidden" name="_wp_http_referer" value="/wifi-configuration-on-nodemcu/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; transition: none; height: 0px !important; min-height: 0px !important; font-family: Lato, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; text-decoration: none solid rgba(0, 0, 0, 0.701961); word-spacing: 0px; text-indent: 0px; line-height: 19.6px; width: 581.641px;" class="autosizejs "></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 39px; overflow: hidden; word-wrap: break-word; resize: none;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(9).html" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="./NodeMCU Wifi Configuration – IoT Bytes_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value=""></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./NodeMCU Wifi Configuration – IoT Bytes_files/ad516503a11cd5ca435acc9bb6523536" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your <span class="skimlinks-unlinked">WordPress.com</span> account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;wordpress&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./NodeMCU Wifi Configuration – IoT Bytes_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;twitter&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./NodeMCU Wifi Configuration – IoT Bytes_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;facebook&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./NodeMCU Wifi Configuration – IoT Bytes_files/ad516503a11cd5ca435acc9bb6523536" alt="Google+ photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;googleplus&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p></div>
+
+
+
+
+<p class="form-submit" style="display: none;"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="314" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a384c0d8bd"></p>
+<input type="hidden" name="genseq" value="1490786625">
+<p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1490786629246"></form>
+			</div><!-- #respond -->
+	<div style="clear: both"></div>
+</div><!-- #comments -->
+			</article> <!-- /page -->
+			
+		
+	</main> <!-- /content -->
+
+	
+<div class="sidebar">
+	<aside id="authors-5" class="widget widget_authors"><div class="widget-content"><h3 class="widget-title">Author:</h3><ul><li><img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/df6d258d9c3bf01e078956ad442a2bee(1)" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-df6d258d9c3bf01e078956ad442a2bee-5"> <strong>Pradeep Singh</strong></li></ul></div><div class="clear"></div></aside><aside id="blog-stats-3" class="widget widget_blog-stats"><div class="widget-content"><h3 class="widget-title">Blog Stats:</h3>		<ul>
+			<li>69,290 hits</li>
+		</ul>
+		</div><div class="clear"></div></aside><aside id="top-posts-3" class="widget widget_top-posts"><div class="widget-content"><h3 class="widget-title">Top Posts &amp; Pages:</h3><ul>				<li>
+										<a href="https://iotbytes.wordpress.com/nodemcu-pinout/" class="bump-view" data-bump-view="tp">
+						NodeMCU Pinout					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/" class="bump-view" data-bump-view="tp">
+						NodeMCU Wifi Configuration					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/3-3v-power-supply-for-esp-8266/" class="bump-view" data-bump-view="tp">
+						3.3v Step Down Power Supply For ESP 8266					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/" class="bump-view" data-bump-view="tp">
+						Store MQTT Data from Sensors into SQL Database					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/sqlite-db-on-raspberry-pi/" class="bump-view" data-bump-view="tp">
+						SQLite DB on Raspberry Pi					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/mosquitto-mqtt-broker-on-raspberry-pi/" class="bump-view" data-bump-view="tp">
+						Mosquitto MQTT Broker on Raspberry Pi					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/capturing-and-analysing-mqtt-packets/" class="bump-view" data-bump-view="tp">
+						Capturing and Analysing MQTT Packets					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/mqtt-with-nodemcu/" class="bump-view" data-bump-view="tp">
+						MQTT with NodeMCU					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/esp8266-pinouts/" class="bump-view" data-bump-view="tp">
+						ESP8266 Pinout					</a>
+									</li>
+							<li>
+										<a href="https://iotbytes.wordpress.com/paho-mqtt-with-python/" class="bump-view" data-bump-view="tp">
+						Paho MQTT with Python					</a>
+									</li>
+			</ul></div><div class="clear"></div></aside><aside id="pages-5" class="widget widget_pages"><div class="widget-content"><h3 class="widget-title">All POSTS &amp; PAGES:</h3>		<ul>
+			<li class="page_item page-item-14"><a href="https://iotbytes.wordpress.com/3-3v-power-supply-for-esp-8266/">3.3v Step Down Power Supply For ESP&nbsp;8266</a></li>
+<li class="page_item page-item-2"><a href="https://iotbytes.wordpress.com/about-2/">About</a></li>
+<li class="page_item page-item-1811"><a href="https://iotbytes.wordpress.com/application-protocols-for-iot/">Application Protocols for&nbsp;IoT</a></li>
+<li class="page_item page-item-4600"><a href="https://iotbytes.wordpress.com/aws-iot-cli-on-raspberry-pi/">AWS IoT CLI on Raspberry&nbsp;Pi</a></li>
+<li class="page_item page-item-3028"><a href="https://iotbytes.wordpress.com/basic-iot-actuators/">Basic IoT Actuators</a></li>
+<li class="page_item page-item-2569"><a href="https://iotbytes.wordpress.com/basic-sensors-for-iot/">Basic IoT Sensors</a></li>
+<li class="page_item page-item-5205"><a href="https://iotbytes.wordpress.com/aws-iot-policy-basics/">Basics of AWS IoT&nbsp;Policies</a></li>
+<li class="page_item page-item-853"><a href="https://iotbytes.wordpress.com/capturing-and-analysing-mqtt-packets/">Capturing and Analysing MQTT&nbsp;Packets</a></li>
+<li class="page_item page-item-1042"><a href="https://iotbytes.wordpress.com/checking-wifi-status-before-performing-any-task-on-esp8266/">Checking WiFi Status Before Performing any Operation on&nbsp;ESP8266</a></li>
+<li class="page_item page-item-1684"><a href="https://iotbytes.wordpress.com/popular-hardware-platforms-for-iot/">Common IoT Hardware&nbsp;Platforms</a></li>
+<li class="page_item page-item-10"><a href="https://iotbytes.wordpress.com/contact/">Contact</a></li>
+<li class="page_item page-item-74"><a href="https://iotbytes.wordpress.com/esp8266-2/">ESP8266</a></li>
+<li class="page_item page-item-740"><a href="https://iotbytes.wordpress.com/esp8266-flashing-and-programming-cradle/">ESP8266 Flashing and Programming&nbsp;Cradle</a></li>
+<li class="page_item page-item-577"><a href="https://iotbytes.wordpress.com/esp8266-pinouts/">ESP8266 Pinout</a></li>
+<li class="page_item page-item-5110"><a href="https://iotbytes.wordpress.com/starting-with-aws-iot/">Getting Started with AWS&nbsp;IoT</a></li>
+<li class="page_item page-item-526"><a href="https://iotbytes.wordpress.com/esp8266/">Initial Setup for&nbsp;ESP8266</a></li>
+<li class="page_item page-item-246"><a href="https://iotbytes.wordpress.com/first-time-setup-for-nodemcu/">Initial Setup for&nbsp;NodeMCU</a></li>
+<li class="page_item page-item-653"><a href="https://iotbytes.wordpress.com/">Let’s Decipher IoT…</a></li>
+<li class="page_item page-item-426"><a href="https://iotbytes.wordpress.com/managing-files-with-nodemcu/">Managing Files with&nbsp;NodeMCU</a></li>
+<li class="page_item page-item-1348"><a href="https://iotbytes.wordpress.com/monitor-ups-power-events-on-mqtt-client/">Monitor UPS Power Events on MQTT&nbsp;Client</a></li>
+<li class="page_item page-item-1184"><a href="https://iotbytes.wordpress.com/mosquitto-mqtt-broker-on-raspberry-pi/">Mosquitto MQTT Broker on Raspberry&nbsp;Pi</a></li>
+<li class="page_item page-item-121"><a href="https://iotbytes.wordpress.com/mqtt/">MQTT</a></li>
+<li class="page_item page-item-462"><a href="https://iotbytes.wordpress.com/physical-shutdown-button-for-wd-my-cloud/">MQTT Based Shutdown Button for WD My&nbsp;Cloud</a></li>
+<li class="page_item page-item-3811"><a href="https://iotbytes.wordpress.com/mqtt-over-websockets/">MQTT over WebSockets</a></li>
+<li class="page_item page-item-4808"><a href="https://iotbytes.wordpress.com/mqtt-with-aws-iot-using-python-and-paho/">MQTT with AWS IoT Platform using Python and&nbsp;Paho</a></li>
+<li class="page_item page-item-218"><a href="https://iotbytes.wordpress.com/mqtt-with-nodemcu/">MQTT with NodeMCU</a></li>
+<li class="page_item page-item-92"><a href="https://iotbytes.wordpress.com/nodemcu/">NodeMCU</a></li>
+<li class="page_item page-item-633"><a href="https://iotbytes.wordpress.com/nodemcu-pinout/">NodeMCU Pinout</a></li>
+<li class="page_item page-item-314 current_page_item"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/">NodeMCU Wifi Configuration</a></li>
+<li class="page_item page-item-2378"><a href="https://iotbytes.wordpress.com/open-source-tools-for-iot-software-applications/">Open Source Tools for IoT Software&nbsp;Applications</a></li>
+<li class="page_item page-item-158"><a href="https://iotbytes.wordpress.com/paho-mqtt-with-python/">Paho MQTT with&nbsp;Python</a></li>
+<li class="page_item page-item-4382"><a href="https://iotbytes.wordpress.com/programmatically-tweet-from-raspberry-pi-using-python-script/">Post a Tweet on Twitter from Raspberry Pi using Python&nbsp;Script</a></li>
+<li class="page_item page-item-3396"><a href="https://iotbytes.wordpress.com/python-flask-web-application-on-raspberry-pi-with-nginx-and-uwsgi/">Python Flask Web Application on Raspberry Pi with NGINX and&nbsp;uWSGI</a></li>
+<li class="page_item page-item-105"><a href="https://iotbytes.wordpress.com/raspberrypi/">Raspberry Pi</a></li>
+<li class="page_item page-item-3147"><a href="https://iotbytes.wordpress.com/raspberry-pi-ip-network-configuration/">Raspberry Pi IP Network&nbsp;Configuration</a></li>
+<li class="page_item page-item-1128"><a href="https://iotbytes.wordpress.com/raspberry-pi-pinout/">Raspberry Pi Pinout</a></li>
+<li class="page_item page-item-4316"><a href="https://iotbytes.wordpress.com/programmatically-send-e-mail-from-raspberry-pi-using-python-and-gmail/">Send Email from Raspberry Pi using Python Script and Gmail&nbsp;SMTP</a></li>
+<li class="page_item page-item-3640"><a href="https://iotbytes.wordpress.com/sqlite-db-on-raspberry-pi/">SQLite DB on Raspberry&nbsp;Pi</a></li>
+<li class="page_item page-item-3997"><a href="https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/">Store MQTT Data from Sensors into SQL&nbsp;Database</a></li>
+<li class="page_item page-item-1605"><a href="https://iotbytes.wordpress.com/what-is-iot/">What is IoT?</a></li>
+<li class="page_item page-item-1902"><a href="https://iotbytes.wordpress.com/network-access-protocols-for-iot/">Wireless Networking Technologies for&nbsp;IoT</a></li>
+		</ul>
+		</div><div class="clear"></div></aside><aside id="search-6" class="widget widget_search"><div class="widget-content">
+<form method="get" class="search-form" action="https://iotbytes.wordpress.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search" value="" name="s" title="Search for:">
+	</label>
+	<button type="submit" class="search-button"><span class="fa fw fa-search"></span><span class="screen-reader-text">Search</span></button>
+</form>
+</div><div class="clear"></div></aside><aside id="follow_button_widget-3" class="widget widget_follow_button_widget"><div class="widget-content">
+		<iframe src="./NodeMCU Wifi Configuration – IoT Bytes_files/index.html" width="100%" height="20" frameborder="0" scrolling="no"></iframe>
+		<script type="text/javascript">(function(d){var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');p.type = 'text/javascript';p.async = true;p.src = '//widgets.wp.com/platform.js';f.parentNode.insertBefore(p,f);}(document));</script>
+
+		</div><div class="clear"></div></aside></div>
+
+	<div class="clear"></div>
+
+</div> <!-- /wrapper.section-inner -->
+
+
+<footer class="site-footer">
+
+	<div class="section-inner">
+		<a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" class="to-the-top" title="To the top"><div class="fa fw fa-arrow-up"></div></a>
+		<p class="copyright">© 2017 <a href="https://iotbytes.wordpress.com/" title="IoT Bytes — Bits and Bytes of IoT" rel="home">IoT Bytes</a></p>
+		<p class="attribution"><a href="https://wordpress.com/?ref=footer_website">Create a free website or blog at WordPress.com.</a></p>
+	</div>
+
+</footer> <!-- /site-footer -->
+
+<!--  -->
+<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/gprofiles.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/wpgroho.js.download"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-bcadc2b3f630fa74b093f31fcbfa798f">
+	</div>
+	<div class="grofile-hash-map-df6d258d9c3bf01e078956ad442a2bee">
+	</div>
+	<div class="grofile-hash-map-9ce4b7db61ee68d0c67ce76b0c18ac54">
+	</div>
+	<div class="grofile-hash-map-fc387060ea20464eb7586954cbe9c5c7">
+	</div>
+	<div class="grofile-hash-map-45a4ba9cbb6931c111d5892f79e477a1">
+	</div>
+	<div class="grofile-hash-map-126623e232a03312c21a12e30dadc892">
+	</div>
+	<div class="grofile-hash-map-d4e6df36fbbdd0b45039c1321483c950">
+	</div>
+	<div class="grofile-hash-map-595bf4c7586eed6300a36e20e8913d2d">
+	</div>
+	<div class="grofile-hash-map-67fb9604793da9b6ce074fcec2fec78a">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/iotbytes.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/iotbytes.wordpress.com\/wp-login.php?action=logout&_wpnonce=34e00655e5","homeURL":"https:\/\/iotbytes.wordpress.com\/","postID":"314","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(6)"></script>
+
+	<div id="carousel-reblog-box">
+		<form action="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Add your thoughts here... (optional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Post to</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="https://iotbytes.wordpress.com/wifi-configuration-on-nodemcu/#" class="cancel">Cancel</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Reblog Post">
+				<input type="hidden" id="carousel-reblog-blog-id" value="109695034">
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://iotbytes.wordpress.com">
+				<input type="hidden" id="carousel-reblog-blog-title" value="IoT Bytes">
+				<input type="hidden" id="carousel-reblog-post-url" value="">
+				<input type="hidden" id="carousel-reblog-post-title" value="">
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="ce64bcc97e"><input type="hidden" name="_wp_http_referer" value="/wifi-configuration-on-nodemcu/">		</form>
+
+		<div class="arrow"></div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/iotbytes.wordpress.com\/wifi-configuration-on-nodemcu\/":314};
+	</script>
+		<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/form.js.download"></script>
+<link rel="stylesheet" id="all-css-0-3" href="./NodeMCU Wifi Configuration – IoT Bytes_files/jetpack-carousel.css" type="text/css" media="all">
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://s1.wp.com/wp-content/mu-plugins/carousel/jetpack-carousel-ie8fix.css?m=1412618825h&#038;ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript">
+/* <![CDATA[ */
+var comment_like_text = {"loading":"Loading..."};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var actionbardata = {"siteID":"109695034","siteName":"IoT Bytes","siteURL":"http:\/\/iotbytes.wordpress.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/c65ffe0f4a0d17cf7501d6033ecd052f?s=50&d=https%3A%2F%2Fs1.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/rowling","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/iotbytes.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F","themeURL":"https:\/\/wordpress.com\/theme\/rowling\/","xhrURL":"https:\/\/iotbytes.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"3207359003","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"cce11bf4be\" \/>","referer":"https:\/\/iotbytes.wordpress.com\/wifi-configuration-on-nodemcu\/","canFollow":"","statusMessage":"","customizeLink":"https:\/\/iotbytes.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F","postID":"314","shortlink":"http:\/\/wp.me\/P7qgGK-54","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/iotbytes.wordpress.com\/314","statsLink":"https:\/\/wordpress.com\/stats\/post\/314\/iotbytes.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Rowling","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in the Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/iotbytes.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F\">Log in now.<\/a>","stats":"Stats"}};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/iotbytes.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"aa68b98dd5","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/iotbytes.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F","blog_id":"109695034","local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>","reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=109695034&v=wpcom&tz=0&user_id=0&subd=iotbytes","is_public":"1","reblog_enabled":""};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NodeMCU Wifi Configuration – IoT Bytes_files/saved_resource(7)"></script><div id="actionbar" class="actnbr-pub-rowling actnbr-has-follow"><ul><li class="actnbr-ellipsis actnbr-hidden"> 			  <svg class="gridicon gridicon__ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><circle cx="5" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle></g></svg> 			  <div class="actnbr-popover tip tip-top-left actnbr-more"> 			  	<div class="tip-arrow"></div> 			  	<div class="tip-inner"> 				  <ul> 				    <li class="actnbr-sitename actnbr-hidden"><a href="http://iotbytes.wordpress.com/"><img alt="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/c65ffe0f4a0d17cf7501d6033ecd052f" class="avatar avatar-50" height="50" width="50"> IoT Bytes</a></li> 				   	<li class="actnbr-folded-customize actnbr-hidden"><a href="https://iotbytes.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F"><svg class="gridicon gridicon__customize" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z" data-reactid=".2.1.1:0.1b.0"></path></g></svg><span>Customize<span></span></span></a></li> 				     					<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li> 				    <li class="actnbr-login actnbr-hidden"><a href="https://iotbytes.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Fiotbytes.wordpress.com%2Fwifi-configuration-on-nodemcu%2F">Log in</a></li> 				     				    <li class="actnbr-shortlink actnbr-hidden"><a href="http://wp.me/P7qgGK-54">Copy shortlink</a></li> 				    <li class="flb-report actnbr-hidden"><a href="http://en.wordpress.com/abuse/">Report this content</a></li> 				     				     				    <li class="actnbr-subs actnbr-hidden"><a href="https://subscribe.wordpress.com/">Manage subscriptions</a></li> 				     			      </ul> 			    </div> 		      </div> 		    </li> 	      </ul></div>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<script type="text/javascript">
+	var skimlinks_pub_id = "725X584219"
+	var skimlinks_sitename = "iotbytes.wordpress.com";
+	</script>
+	<script type="text/javascript" defer="" src="./NodeMCU Wifi Configuration – IoT Bytes_files/725X1342.skimlinks.js.download"></script>		<iframe src="./NodeMCU Wifi Configuration – IoT Bytes_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script>
+			var _comscore = _comscore || [];
+			_comscore.push({
+				c1: "2",
+				c2: "7518284"
+			});
+			(function() {
+				var s = document.createElement("script"),
+					el = document.getElementsByTagName("script")[0];
+				s.defer = true;
+				s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+				el.parentNode.insertBefore(s, el);
+			})();
+		</script>
+		<noscript>
+			&lt;p class="robots-nocontent"&gt;&lt;img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=7518284&amp;c3=&amp;c4=&amp;c5=&amp;c6=&amp;c15=&amp;cv=2.0&amp;cj=1" alt="" style="display:none;" width="1" height="1" /&gt;&lt;/p&gt;
+		</noscript><script src="./NodeMCU Wifi Configuration – IoT Bytes_files/w.js.download" type="text/javascript" async="" defer=""></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'109695034','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'109695034','v':'wpcom','tz':'0','user_id':'0','post':'314','subd':'iotbytes'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1LVmwrVi5vQS5fVFtfdHBbPyw1VXIrU3hWLHhzVndTdktBX0ddJnpXRjVaOTd6fj1YMX4ydzR6MmRCYnxkNmdHYS5ILSZhW3ZtYUZrditDY2owX3hCOFN5TUpYXysuSHFGTWE0XXdkUG5xM184VXxaUGh6YjV4XTMxWVhrUEZdbkduQzRuRz0uODBFLCxEdEhzall1b042YVlxX1YmNkVvaVJPaGldJWY5Nk5QZjBMUlpUSTJtPTFJU3pGcnVxa3B5ZjAsVUYleDJbQ01pNC1IM1d+dHp0PWJPLlp5clQsUEtoemlhbzdvfkVUJSZ0K3lmZjVBaFJibz8/SHFdZC1XNl8wanJZL0UxdD9xOUs2dkY='}]);
+_stq.push([ 'clickTrackerInit', '109695034', '314' ]);
+	</script>
+<noscript>&lt;img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /&gt;</noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+<div class="comment-likes-overlay" style="display: none;"></div><img src="./NodeMCU Wifi Configuration – IoT Bytes_files/g.gif" alt=":)" id="wpstats"></body></html>
