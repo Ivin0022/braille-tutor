@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://nodemcu.com/index_en.html -->
+<html lang="en" class="wf-opensans-n3-active wf-opensans-i3-active wf-opensans-n6-active wf-opensans-i6-active wf-opensans-n7-active wf-opensans-i7-active wf-opensans-n8-active wf-opensans-i8-active wf-opensans-i4-active wf-opensans-n4-active wf-oxygen-n3-active wf-oxygen-n7-active wf-oxygen-n4-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <!--[if lt IE 9]>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                    <script type="text/javascript" src="vendor/bower/html5shiv/dist/html5shiv.js"></script>
+            <![endif]-->
+  <link rel="icon" type="image/png" href="http://nodemcu.com/favicon.png">
+
+  <link rel="stylesheet" href="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/base.css">
+  <link rel="stylesheet" href="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/style.css">
+  <link rel="stylesheet" href="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/ribbon.css">
+  <link rel="stylesheet" href="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/mystyle.css">
+  <script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/prettify.js.download"></script>
+  <script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/lang-lua.js.download"></script>
+  <title>NodeMcu -- An open-source firmware based on ESP8266 wifi-soc.</title>
+  <script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/jquery.js.download"></script>
+  <script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/live-patch.js.download"></script>
+
+  <script type="text/javascript">
+    var fonts = {
+      "Open Sans": {
+        "family": "Open Sans",
+        "source": "google",
+        "subsets": [
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "variants": [
+          "300",
+          "300italic",
+          "600",
+          "600italic",
+          "700",
+          "700italic",
+          "800",
+          "800italic",
+          "italic",
+          "regular"
+        ]
+      },
+      "Oxygen": {
+        "family": "Oxygen",
+        "source": "google",
+        "subsets": [
+          "latin",
+          "latin-ext"
+        ],
+        "variants": [
+          "300",
+          "700",
+          "regular"
+        ]
+      }
+    };
+  </script>
+
+  <script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/webfont.js.download"></script>
+  <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,600italic,700,700italic,800,800italic,italic,regular%7COxygen:300,700,regular&amp;subset=latin,cyrillic,latin,cyrillic"><script type="text/javascript" src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/fontloader.js.download"></script>
+
+
+
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="keywords" content="nodemcu,wifi-soc,esp8266">
+  <meta name="description" content="NodeMcu -- a firmware based on ESP8266 wifi-soc.">
+</head>
+
+<body onload="prettyPrint()">
+  <div class="b-content">
+    <div id="fr_54747f3dd775ef1a360001a2" class="fr-widget fr-container fr_murose ">
+      <div id="fr_54747f65d775ef1a360001a6" class="fr-widget fr-grid fr_jagefe ">
+        <a id="fr_547774ea7976d87281000029" class="fr-widget fr-text fr-wf fr_hometopbutton  fr-link fr-widget-hover-opacity-60" href="http://nodemcu.com/index_en.html#fr_54745c8bd775ef4b99000011">
+          <div class="fr-text">Home</div>
+
+        </a><!--
+
+     --><a id="fr_547774e07976d87281000024" class="fr-widget fr-text fr-wf fr_featurestopbutton  fr-link fr-widget-hover-opacity-60" href="http://nodemcu.com/index_en.html#fr_54747361d775ef1a3600000f">
+          <div class="fr-text">Features</div>
+
+        </a><!--
+
+     --><a id="fr_547774d67976d8728100001f" class="fr-widget fr-text fr-wf fr_examplestopbutton  fr-link fr-widget-hover-opacity-60" href="http://nodemcu.com/index_en.html#fr_5475f7667976d8501100000f">
+          <div class="fr-text">Examples</div>
+
+        </a><!--
+
+     --><a id="fr_54775ef27976d8728100000f" class="fr-widget fr-text fr-wf fr_devkittopbutton  fr-link fr-widget-hover-opacity-60" href="http://nodemcu.com/index_en.html#fr_54747661d775ef1a3600009e">
+          <div class="fr-text">DevKit</div>
+
+        </a><!--
+
+     --><a id="fr_549033f3f6fa847bcb00010a" class="fr-widget fr-text fr-wf fr_langtopbutton  fr-link fr-widget-hover-opacity-60" href="http://nodemcu.com/index_cn.html">
+          <div class="fr-text">中 文</div>
+
+        </a>
+
+
+      </div>
+
+      <div class="ribbon">
+        <a href="https://github.com/nodemcu/nodemcu-firmware">Fork me on GitHub</a>
+      </div>
+
+    </div><!--
+
+ --><div id="fr_54745c8bd775ef4b99000011" class="fr-widget fr-container fr_fixed_header " style="top: -811.8px;">
+      <div id="fr_54747d26d775ef1a3600019d" class="fr-widget fr-img fr_duhofu ">
+        <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/nodemcu-style5-150px.png_150x150.png">
+
+      </div><!--
+
+   --><div id="fr_54745c8bd775ef4b99000014" class="fr-widget fr-container fr_container_5 ">
+        <div id="fr_54745c8bd775ef4b9900001b" class="fr-widget fr-container fr_text_block_center_2 ">
+          <div id="fr_54745c8bd775ef4b99000055" class="fr-widget fr-text fr-wf fr_header_center_3 fr_h1 ">
+            <div class="fr-text">
+              <div>NodeMcu</div>Connect Things EASY</div>
+
+          </div><!--
+
+       --><div id="fr_54745c8bd775ef4b99000053" class="fr-widget fr-text fr-wf fr_paragraph_center_2 ">
+            <div class="fr-text">
+              An open-source firmware and development kit that helps you to prototype your IOT product within a few Lua script lines
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <script>
+        (function() {
+          'use strict';
+          var $that = $(this);
+
+          $(window).on(
+            'scroll',
+            function() {
+              $that.css('top', -window.scrollY * 0.2 + 'px');
+            }
+          );
+        }).call(document.getElementsByClassName('fr_fixed_header')[0]);
+      </script>
+
+    </div><!--
+
+ --><div id="fr_54747361d775ef1a3600000f" class="fr-widget fr-container fr_features ">
+      <div id="fr_54747361d775ef1a3600001e" class="fr-widget fr-text fr-wf fr_featurestitle ">
+        <div class="fr-text">Features</div>
+
+      </div><!--
+
+   --><div id="fr_54747361d775ef1a3600001a" class="fr-widget fr-text fr-wf fr_featuresslogan ">
+        <div class="fr-text">Open-source, Interactive, Programmable, Low cost, Simple, Smart, WI-FI enabled</div>
+
+      </div><!--
+
+   --><div id="fr_54747361d775ef1a36000013" class="fr-widget fr-grid fr_featuresgrid ">
+        <div id="fr_54747361d775ef1a3600002a" class="fr-widget fr-container fr_chip ">
+          <div id="fr_54747362d775ef1a36000084" class="fr-widget fr-img fr_chipimage ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/chips.png_200x200.png">
+
+          </div><!--
+
+       --><div id="fr_54923c897af6d40d56000010" class="fr-widget fr-text fr-wf fr_textchipslogan ">
+            <div class="fr-text">Arduino-like hardware IO</div>
+
+          </div><!--
+
+       --><div id="fr_54747362d775ef1a3600007c" class="fr-widget fr-text fr-wf fr_textchip ">
+            <div class="fr-text">Advanced API for hardware IO, which can dramatically reduce the redundant work for configuring and manipulating hardware. Code like arduino, but interactively in Lua script.</div>
+
+          </div>
+
+
+        </div><!--
+
+     --><div id="fr_54747361d775ef1a36000026" class="fr-widget fr-container fr_node ">
+          <div id="fr_54747362d775ef1a36000060" class="fr-widget fr-img fr_nodeimage ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/node1s_1.png_200x200.png">
+
+          </div><!--
+
+       --><div id="fr_54923cd67af6d40d56000014" class="fr-widget fr-text fr-wf fr_textnodeslogan ">
+            <div class="fr-text">Nodejs style network API</div>
+
+          </div><!--
+
+       --><div id="fr_54747362d775ef1a36000058" class="fr-widget fr-text fr-wf fr_textnode ">
+            <div class="fr-text">Event-driven API for network applicaitons, which faciliates developers writing code running on a 5mm*5mm sized MCU in Nodejs style. Greatly speed up your IOT application developing process.</div>
+
+          </div>
+
+
+        </div><!--
+
+     --><div id="fr_54747361d775ef1a36000022" class="fr-widget fr-container fr_cloud ">
+          <div id="fr_54747361d775ef1a3600003c" class="fr-widget fr-img fr_cloudimage ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/clouds.png_200x200.png">
+
+          </div><!--
+
+       --><div id="fr_54923ce97af6d40d56000018" class="fr-widget fr-text fr-wf fr_textcloudslogan ">
+            <div class="fr-text">Lowest cost WI-FI</div>
+
+          </div><!--
+
+       --><div id="fr_54747361d775ef1a36000034" class="fr-widget fr-text fr-wf fr_textcloud ">
+            <div class="fr-text">Less than $2 WI-FI MCU ESP8266 integrated and esay to prototyping development kit. We provide the best platform for IOT application development at the lowest cost.</div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div><!--
+
+ --><div id="fr_54760baa7976d83acd000013" class="fr-widget fr-container fr_pudale ">
+
+    </div><!--
+
+ --><div id="fr_54747661d775ef1a3600009e" class="fr-widget fr-container fr_dev_kit ">
+      <div id="fr_54747661d775ef1a360000a8" class="fr-widget fr-text fr-wf fr_devkittitle ">
+        <div class="fr-text">Development Kit</div>
+
+      </div><!--
+
+   --><div id="fr_547629d27976d849b9000011" class="fr-widget fr-text fr-wf fr_devkitslogan ">
+        <div class="fr-text">The Development Kit based on ESP8266, integates GPIO, PWM, IIC, 1-Wire and ADC all in one board. Power your developement in the fastest way combinating with NodeMcu Firmware!</div>
+
+      </div><!--
+
+   --><div id="fr_5476109a7976d83acd000017" class="fr-widget fr-img fr_devkitimage ">
+        <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/zms.jpg_1200x1200.jpg">
+
+      </div><!--
+
+   --><div id="fr_54747661d775ef1a360000a2" class="fr-widget fr-grid fr_devkit3columngrid ">
+        <div id="fr_54747661d775ef1a360000b4" class="fr-widget fr-container fr_pic1 ">
+          <div id="fr_54747662d775ef1a360000e4" class="fr-widget fr-img fr_devkitpic ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/z1s_1.jpg_450x300.jpg">
+
+          </div><!--
+
+       --><div id="fr_54747662d775ef1a360000d8" class="fr-widget fr-text fr-wf fr_pic1dis ">
+            <div class="fr-text">USB-TTL included, plug&amp;play</div>
+
+          </div>
+
+
+        </div><!--
+
+     --><div id="fr_54747661d775ef1a360000b0" class="fr-widget fr-container fr_pic2 ">
+          <div id="fr_54747661d775ef1a360000d4" class="fr-widget fr-img fr_devkitpic_2 ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/b1s.jpg_450x300.jpg">
+
+          </div><!--
+
+       --><div id="fr_54747661d775ef1a360000c8" class="fr-widget fr-text fr-wf fr_pic2dis ">
+            <div class="fr-text">10 GPIO, every GPIO can be PWM, I2C, 1-wire</div>
+
+          </div>
+
+
+        </div><!--
+
+     --><div id="fr_54747661d775ef1a360000ac" class="fr-widget fr-container fr_pic3 ">
+          <div id="fr_54747661d775ef1a360000c4" class="fr-widget fr-img fr_devkitpic_3 ">
+            <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/c1s.jpg_450x300.jpg">
+
+          </div><!--
+
+       --><div id="fr_54747661d775ef1a360000b8" class="fr-widget fr-text fr-wf fr_pic3dis ">
+            <div class="fr-text">FCC CERTIFIED WI-FI module, PCB antenna</div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div><!--
+
+ --><div id="fr_547479c8d775ef1a36000108" class="fr-widget fr-container fr_pukolo ">
+
+    </div><!--
+
+ --><div id="fr_5475f7667976d8501100000f" class="fr-widget fr-container fr_examples ">
+      <div id="fr_5475f7667976d8501100001e" class="fr-widget fr-text fr-wf fr_examplestitle ">
+        <div class="fr-text">Examples</div>
+
+      </div><!--
+
+   --><div id="fr_5475f7667976d8501100001a" class="fr-widget fr-text fr-wf fr_examplesslogan ">
+        <div class="fr-text">A few examples to play with</div>
+
+      </div><!--
+
+   --><div id="fr_548f020bf6fa84489e000055" class="fr-widget fr-grid fr_examplesgrid ">
+        <div id="fr_548f0368f6fa84489e00006b" class="fr-widget fr-text fr-wf fr_paragraph_center_3 ">
+          <div class="fr-text">
+            <p>Connect to the wireless network</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+print</span><span class="pun">(</span><span class="pln">wifi</span><span class="pun">.</span><span class="pln">sta</span><span class="pun">.</span><span class="pln">getip</span><span class="pun">())</span><span class="pln">
+</span><span class="com">--nil</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">setmode</span><span class="pun">(</span><span class="pln">wifi</span><span class="pun">.</span><span class="pln">STATION</span><span class="pun">)</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">sta</span><span class="pun">.</span><span class="pln">config</span><span class="pun">(</span><span class="str">"SSID"</span><span class="pun">,</span><span class="str">"password"</span><span class="pun">)</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">wifi</span><span class="pun">.</span><span class="pln">sta</span><span class="pun">.</span><span class="pln">getip</span><span class="pun">())</span><span class="pln">
+</span><span class="com">--192.168.18.110</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_548f038ff6fa84489e000070" class="fr-widget fr-text fr-wf fr_paragraph_center_4 ">
+          <div class="fr-text">
+            <p>Arduino like IO access</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+pin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+gpio</span><span class="pun">.</span><span class="pln">mode</span><span class="pun">(</span><span class="pln">pin</span><span class="pun">,</span><span class="pln">gpio</span><span class="pun">.</span><span class="pln">OUTPUT</span><span class="pun">)</span><span class="pln">
+gpio</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">pin</span><span class="pun">,</span><span class="pln">gpio</span><span class="pun">.</span><span class="pln">HIGH</span><span class="pun">)</span><span class="pln">
+gpio</span><span class="pun">.</span><span class="pln">mode</span><span class="pun">(</span><span class="pln">pin</span><span class="pun">,</span><span class="pln">gpio</span><span class="pun">.</span><span class="pln">INPUT</span><span class="pun">)</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">gpio</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">pin</span><span class="pun">))</span><span class="pln">
+
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_548f039bf6fa84489e000075" class="fr-widget fr-text fr-wf fr_paragraph_center_5 ">
+          <div class="fr-text">
+            <p>HTTP Client</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="com">-- A simple http client</span><span class="pln">
+conn</span><span class="pun">=</span><span class="pln">net</span><span class="pun">.</span><span class="pln">createConnection</span><span class="pun">(</span><span class="pln">net</span><span class="pun">.</span><span class="pln">TCP</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">)</span><span class="pln"> 
+conn</span><span class="pun">:</span><span class="pln">on</span><span class="pun">(</span><span class="str">"receive"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">conn</span><span class="pun">,</span><span class="pln"> pl</span><span class="pun">)</span><span class="pln"> print</span><span class="pun">(</span><span class="pln">pl</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+conn</span><span class="pun">:</span><span class="pln">connect</span><span class="pun">(</span><span class="lit">80</span><span class="pun">,</span><span class="str">"121.41.33.127"</span><span class="pun">)</span><span class="pln">
+conn</span><span class="pun">:</span><span class="pln">send</span><span class="pun">(</span><span class="str">"GET / HTTP/1.1\r\nHost: www.nodemcu.com\r\n"</span><span class="pln">
+    </span><span class="pun">..</span><span class="str">"Connection: keep-alive\r\nAccept: */*\r\n\r\n"</span><span class="pun">)</span><span class="pln">
+
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_548f03a6f6fa84489e00007a" class="fr-widget fr-text fr-wf fr_paragraph_center_6 ">
+          <div class="fr-text">
+            <p>HTTP Server</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="com">-- a simple http server</span><span class="pln">
+srv</span><span class="pun">=</span><span class="pln">net</span><span class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">net</span><span class="pun">.</span><span class="pln">TCP</span><span class="pun">)</span><span class="pln"> 
+srv</span><span class="pun">:</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">80</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">conn</span><span class="pun">)</span><span class="pln"> 
+    conn</span><span class="pun">:</span><span class="pln">on</span><span class="pun">(</span><span class="str">"receive"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">conn</span><span class="pun">,</span><span class="pln">payload</span><span class="pun">)</span><span class="pln"> 
+    print</span><span class="pun">(</span><span class="pln">payload</span><span class="pun">)</span><span class="pln"> 
+    conn</span><span class="pun">:</span><span class="pln">send</span><span class="pun">(</span><span class="str">"&lt;h1&gt; Hello, NodeMcu.&lt;/h1&gt;"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">end</span><span class="pun">)</span><span class="pln"> 
+</span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_54900805f6fa847bcb00002b" class="fr-widget fr-text fr-wf fr_paragraph_center_7 ">
+          <div class="fr-text">
+            <p>PWM</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> led</span><span class="pun">(</span><span class="pln">r</span><span class="pun">,</span><span class="pln">g</span><span class="pun">,</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> 
+    pwm</span><span class="pun">.</span><span class="pln">setduty</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)</span><span class="pln"> 
+    pwm</span><span class="pun">.</span><span class="pln">setduty</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="pln">g</span><span class="pun">)</span><span class="pln"> 
+    pwm</span><span class="pun">.</span><span class="pln">setduty</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> 
+</span><span class="kwd">end</span><span class="pln">
+pwm</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">500</span><span class="pun">,</span><span class="lit">512</span><span class="pun">)</span><span class="pln"> 
+pwm</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="lit">500</span><span class="pun">,</span><span class="lit">512</span><span class="pun">)</span><span class="pln"> 
+pwm</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="lit">500</span><span class="pun">,</span><span class="lit">512</span><span class="pun">)</span><span class="pln">
+pwm</span><span class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> 
+pwm</span><span class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span class="lit">2</span><span class="pun">)</span><span class="pln"> 
+pwm</span><span class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span class="lit">3</span><span class="pun">)</span><span class="pln">
+led</span><span class="pun">(</span><span class="lit">512</span><span class="pun">,</span><span class="pln">0</span><span class="pun">,</span><span class="pln">0</span><span class="pun">)</span><span class="pln"> </span><span class="com">-- red</span><span class="pln">
+led</span><span class="pun">(</span><span class="pln">0</span><span class="pun">,</span><span class="pln">0</span><span class="pun">,</span><span class="lit">512</span><span class="pun">)</span><span class="pln"> </span><span class="com">-- blue</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_5490082df6fa847bcb00003d" class="fr-widget fr-text fr-wf fr_paragraph_center_8 ">
+          <div class="fr-text">
+            <p>Blinking Led</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+
+lighton</span><span class="pun">=</span><span class="pln">0
+tmr</span><span class="pun">.</span><span class="pln">alarm</span><span class="pun">(</span><span class="pln">0</span><span class="pun">,</span><span class="lit">1000</span><span class="pun">,</span><span class="lit">1</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">()</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> lighton</span><span class="pun">==</span><span class="pln">0 </span><span class="kwd">then</span><span class="pln"> 
+    lighton</span><span class="pun">=</span><span class="lit">1</span><span class="pln"> 
+    led</span><span class="pun">(</span><span class="lit">512</span><span class="pun">,</span><span class="lit">512</span><span class="pun">,</span><span class="lit">512</span><span class="pun">)</span><span class="pln"> 
+    </span><span class="com">-- 512/1024, 50% duty cycle</span><span class="pln">
+</span><span class="kwd">else</span><span class="pln"> 
+    lighton</span><span class="pun">=</span><span class="pln">0 
+    led</span><span class="pun">(</span><span class="pln">0</span><span class="pun">,</span><span class="pln">0</span><span class="pun">,</span><span class="pln">0</span><span class="pun">)</span><span class="pln"> 
+</span><span class="kwd">end</span><span class="pln"> 
+</span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+
+              </span></code><span class="pln">
+            </span></pre>
+
+          </div>
+
+        </div><!--
+
+     --><div id="fr_54900834f6fa847bcb000042" class="fr-widget fr-text fr-wf fr_paragraph_center_9 ">
+          <div class="fr-text">
+            <p>Bootstrap</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="com">--init.lua will be excuted</span><span class="pln">
+file</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">"init.lua"</span><span class="pun">,</span><span class="str">"w"</span><span class="pun">)</span><span class="pln">
+file</span><span class="pun">.</span><span class="pln">writeline</span><span class="pun">([[</span><span class="pln">print</span><span class="pun">(</span><span class="str">"Hello World!"</span><span class="pun">)]])</span><span class="pln">
+file</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span><span class="pln">
+node</span><span class="pun">.</span><span class="pln">restart</span><span class="pun">()</span><span class="pln">  </span><span class="com">-- this will restart the module.</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_54900837f6fa847bcb000047" class="fr-widget fr-text fr-wf fr_paragraph_center_10 ">
+          <div class="fr-text">
+            <p>Use timer to repeat</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+tmr</span><span class="pun">.</span><span class="pln">alarm</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">5000</span><span class="pun">,</span><span class="lit">1</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> print</span><span class="pun">(</span><span class="str">"alarm 1"</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+tmr</span><span class="pun">.</span><span class="pln">alarm</span><span class="pun">(</span><span class="pln">0</span><span class="pun">,</span><span class="lit">1000</span><span class="pun">,</span><span class="lit">1</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> print</span><span class="pun">(</span><span class="str">"alarm 0"</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+tmr</span><span class="pun">.</span><span class="pln">alarm</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="lit">2000</span><span class="pun">,</span><span class="lit">1</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> print</span><span class="pun">(</span><span class="str">"alarm 2"</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+</span><span class="com">-- after sometime</span><span class="pln">
+tmr</span><span class="pun">.</span><span class="pln">stop</span><span class="pun">(</span><span class="pln">0</span><span class="pun">)</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_54900e2bf6fa847bcb00004c" class="fr-widget fr-text fr-wf fr_paragraph_center_11 ">
+          <div class="fr-text">
+            <p>A pure lua telnet server</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="com">-- a simple telnet server</span><span class="pln">
+s</span><span class="pun">=</span><span class="pln">net</span><span class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">net</span><span class="pun">.</span><span class="pln">TCP</span><span class="pun">,</span><span class="lit">180</span><span class="pun">)</span><span class="pln"> 
+s</span><span class="pun">:</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">2323</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">c</span><span class="pun">)</span><span class="pln"> 
+    </span><span class="kwd">function</span><span class="pln"> s_output</span><span class="pun">(</span><span class="pln">str</span><span class="pun">)</span><span class="pln"> 
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">c</span><span class="pun">~=</span><span class="kwd">nil</span><span class="pun">)</span><span class="pln"> 
+        </span><span class="kwd">then</span><span class="pln"> c</span><span class="pun">:</span><span class="pln">send</span><span class="pun">(</span><span class="pln">str</span><span class="pun">)</span><span class="pln"> 
+      </span><span class="kwd">end</span><span class="pln"> 
+    </span><span class="kwd">end</span><span class="pln"> 
+    node</span><span class="pun">.</span><span class="pln">output</span><span class="pun">(</span><span class="pln">s_output</span><span class="pun">,</span><span class="pln"> 0</span><span class="pun">)</span><span class="pln">   
+    </span><span class="com">-- re-direct output to function s_ouput.</span><span class="pln">
+    c</span><span class="pun">:</span><span class="pln">on</span><span class="pun">(</span><span class="str">"receive"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">c</span><span class="pun">,</span><span class="pln">l</span><span class="pun">)</span><span class="pln"> 
+      node</span><span class="pun">.</span><span class="pln">input</span><span class="pun">(</span><span class="pln">l</span><span class="pun">)</span><span class="pln">           
+      </span><span class="com">--like pcall(loadstring(l)), support multiple separate lines</span><span class="pln">
+    </span><span class="kwd">end</span><span class="pun">)</span><span class="pln"> 
+    c</span><span class="pun">:</span><span class="pln">on</span><span class="pun">(</span><span class="str">"disconnection"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">c</span><span class="pun">)</span><span class="pln"> 
+      node</span><span class="pun">.</span><span class="pln">output</span><span class="pun">(</span><span class="kwd">nil</span><span class="pun">)</span><span class="pln">        
+      </span><span class="com">--unregist redirect output function, output goes to serial</span><span class="pln">
+    </span><span class="kwd">end</span><span class="pun">)</span><span class="pln"> 
+    print</span><span class="pun">(</span><span class="str">"Welcome to NodeMcu world."</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">end</span><span class="pun">)</span><span class="pln">
+
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div><!--
+
+     --><div id="fr_54900e2ff6fa847bcb000051" class="fr-widget fr-text fr-wf fr_paragraph_center_12 ">
+          <div class="fr-text">
+            <p>Interfacing with sensor</p>
+            <pre class="prettyprint"><span class="pln">              </span><code class="language-lua"><span class="pln">
+</span><span class="com">-- read temperature with DS18B20</span><span class="pln">
+t</span><span class="pun">=</span><span class="pln">require</span><span class="pun">(</span><span class="str">"ds18b20"</span><span class="pun">)</span><span class="pln">
+t</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">(</span><span class="lit">9</span><span class="pun">)</span><span class="pln">
+addrs</span><span class="pun">=</span><span class="pln">t</span><span class="pun">.</span><span class="pln">addrs</span><span class="pun">()</span><span class="pln">
+</span><span class="com">-- Total DS18B20 numbers, assume it is 2</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">table</span><span class="pun">.</span><span class="pln">getn</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">))</span><span class="pln">
+</span><span class="com">-- The first DS18B20</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">1</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">C</span><span class="pun">))</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">1</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">F</span><span class="pun">))</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">1</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">K</span><span class="pun">))</span><span class="pln">
+</span><span class="com">-- The second DS18B20</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">2</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">C</span><span class="pun">))</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">2</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">F</span><span class="pun">))</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">addrs</span><span class="pun">[</span><span class="lit">2</span><span class="pun">],</span><span class="pln">t</span><span class="pun">.</span><span class="pln">K</span><span class="pun">))</span><span class="pln">
+</span><span class="com">-- Just read</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">())</span><span class="pln">
+</span><span class="com">-- Just read as centigrade</span><span class="pln">
+print</span><span class="pun">(</span><span class="pln">t</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="kwd">nil</span><span class="pun">,</span><span class="pln">t</span><span class="pun">.</span><span class="pln">C</span><span class="pun">))</span><span class="pln">
+</span><span class="com">-- Don't forget to release it after use</span><span class="pln">
+t </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">nil</span><span class="pln">
+ds18b20 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">nil</span><span class="pln">
+package</span><span class="pun">.</span><span class="pln">loaded</span><span class="pun">[</span><span class="str">"ds18b20"</span><span class="pun">]=</span><span class="kwd">nil</span><span class="pln">
+              </span></code><span class="pln">
+            </span></pre>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div><!--
+
+ --><div id="fr_54760b777976d83acd00000f" class="fr-widget fr-container fr_tavoro ">
+
+    </div><!--
+
+ --><div id="fr_54747a88d775ef1a36000110" class="fr-widget fr-grid fr_cawase ">
+      <div id="fr_54747a9dd775ef1a3600016a" class="fr-widget fr-container fr_bugefe ">
+        <div id="fr_54747a9dd775ef1a36000172" class="fr-widget fr-grid fr_gowogu ">
+          <div id="fr_54747a9dd775ef1a36000188" class="fr-widget fr-container fr_kowafu ">
+
+          </div><!--
+
+       --><div id="fr_54747a9dd775ef1a3600017c" class="fr-widget fr-text fr-wf fr_contactustext ">
+            <div class="fr-text">Contact us</div>
+
+          </div><!--
+
+       --><div id="fr_54747a9dd775ef1a36000180" class="fr-widget fr-container fr_empty2 ">
+
+          </div><!--
+
+       --><div id="fr_547786c77976d87281000038" class="fr-widget fr-container fr_nodemcuteam ">
+            <div class="fr-widget fr-text fr-wf nodemcu-team-copyright">
+              <p>
+                 &nbsp;&nbsp;&nbsp;&nbsp;© 2014 NodeMcu Team
+              </p>
+            </div>
+          </div><!--
+
+       --><div id="fr_54747a9dd775ef1a36000184" class="fr-widget fr-container fr_email ">
+            <a id="fr_549242fe7af6d438a800001d" class="fr-widget fr-text fr-wf fr_emailbutton  fr-link" href="mailto:nodemcu@nodemcu.com">
+              <div class="fr-text">nodemcu@nodemcu.com</div>
+
+            </a>
+
+
+          </div><!--
+
+       --><div id="fr_547786d07976d8728100003c" class="fr-widget fr-container fr_websiteicp ">
+            <div class="fr-widget fr-text fr-wf website-icp">
+              <a href="http://www.miibeian.gov.cn/" target="_blank">浙ICP备14038071号&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            </div>
+
+      <div class="fr-widget fr-text fr-wf website-icp">
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002011205" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+        <img src="./NodeMcu -- An open-source firmware based on ESP8266 wifi-soc._files/beiantubiao.png" style="float:left;">
+        <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33011002011205号</p>
+        </a>
+      </div>
+
+          </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    </div>
+
+
+  </div>
+
+  <div id="footer-assets">
+    <!--[if lt IE 9]>
+                    <script type="text/javascript" src="vendor/bower/respond/respond.src.js"></script>
+                    <script type="text/javascript" src="vendor/bower/raphael/raphael.js"></script>
+                    <script type="text/javascript" src="vendor/bower/raphael-svg-import-classic/raphael-svg-import.js"></script>
+                    <script type="text/javascript" src="js/raphaelize.js"></script>
+            <![endif]-->
+  </div>
+
+
+
+</body></html>
